@@ -45,15 +45,17 @@ def get_info(fileDir,files_array):
                 # print(file)
                 try:
                     pagina_xml = x.group()
-                except ValueError:
-                    print("Oops! XML não encontrado") 
+                except:
+                    print("Oops! XML não encontrado para file: "+ file) 
+                    #break
+                    #pass
+                    continue
                 #print(pagina_xml)
                 
                 
                 # abrir conecção com o arquivo Word 
                 #doc = docx.Document(fileDir+'/'+file)
                 doc = docx.Document(fileDir+file)
-
 
                 # data criação
                 dt_doc = doc.core_properties.created
