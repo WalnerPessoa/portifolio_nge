@@ -45,6 +45,9 @@ def get_info(fileDir,files_array):
                 # print(file)
                 try:
                     pagina_xml = x.group()
+                    # converter variavel string para int
+                    pagina_xml = int(pagina_xml)
+                    
                     # gerar variável tamanho livro
                     if pagina_xml>119:
                         tamanho_livro =  2
@@ -105,7 +108,7 @@ def get_info(fileDir,files_array):
                     table_chunks.append(table)
                     
                 # gerar lista resposta
-                list_retur=file[2:8],pagina_xml,sum(caracteres), len(table_chunks), len(image_array),len(array_styles), dt_doc.date()
+                list_retur=file[2:8],pagina_xml,sum(caracteres), len(table_chunks), len(image_array),len(array_styles), tamanho_livro, dt_doc.date()
                 
                 # gerar tabela resposta
                 table_return.append(list_retur)
