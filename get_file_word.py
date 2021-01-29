@@ -45,6 +45,14 @@ def get_info(fileDir,files_array):
                 # print(file)
                 try:
                     pagina_xml = x.group()
+                    # gerar variável tamanho livro
+                    if pagina_xml>119:
+                        tamanho_livro =  2
+                    elif pagina_xml>59 & pagina_xml<120:
+                        tamanho_livro =  1
+                    else:  
+                        tamanho_livro =  0
+                    print("Tamanho livro: ",tamanho_livro)
                 except:
                     print("Oops! XML não encontrado para file: "+ file) 
                     #break
