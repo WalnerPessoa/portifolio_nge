@@ -10,31 +10,15 @@ import subprocess
 import re
 import docx
 
-
-# montagem de diretório na rede a partir de um diretório local (pastalocal)
-#mkdir pastaLocal
-dir_destino= "pastaLocal"
-if not os.path.exists(dir_destino):
-    os.makedirs(dir_destino)
-    
-# achando o caminho dentro da rede - MONTANDO DIRETÓRIO NA REDE
-try:
-    # achando o caminho dentro da rede - MONTANDO DIRETÓRIO NA REDE
-    mount_smbfs smb://ensi-filer02/gerpubprop$ pastaLocal/
-    ##### se der ERRO nesse comando ejetar a pasta gerpubprop$ antes e rodar o codigo novamente
-except:       
-    print("Erro na montagem do Diretório ejetar a pasta gerpubprop$ antes e rodar o codigo novamente")
-    
-
 # capturar data do sistema
 data_atual = date.today()
 
 #setar variáveis onde estão arquivos da triagem e tipo do arquivo word (docx)
 fileExt = r".docx"
-dir_origem = r"/Users/wpessoa/repositorios/portifolio_nge/pastaLocal/Coordenacao de Gestao Editorial/2021/TRIAGEM/"
+dir_origem = r"./"
 
 # verificar se existe o diretório
-print("Existe esse diretório? ",os.path.exists(dir_origem)) 
+#print("Existe esse diretório? ",os.path.exists(dir_origem)) 
 
 #criar variável contendo todos os arquivos com extensão DOCX no diretório especifico do dir_origem 
 files_array = [_ for _ in os.listdir(dir_origem) if _.endswith(fileExt)]
@@ -139,11 +123,3 @@ if len(files_array)>0:
             shutil.move(dir_origem+ linha, dir_destino + linha)
     except OSError:
             print("Oops!  erro no método copiara arquivo - ERRO NO S.O.")
-            
-
-#DESMONTANDO DIRETÓRIO NA REDE ====== precisa fechar todos arquivos que estiver usando a Pata que foi MONTADA
-#try:
-#    umount pastaLocal/
-#except OSError:       
-#    print("Erro na Desmontagem do Diretório")
-  
